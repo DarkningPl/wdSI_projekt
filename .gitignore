@@ -1,0 +1,7 @@
+map_named.png
+map_named_temp.png
+real_map.png
+real_map_named.png
+*.zip
+/.idea/
+/venv/
