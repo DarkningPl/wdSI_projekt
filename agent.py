@@ -9,7 +9,7 @@ import queue
 from env import Player
 from mapdata import *
 
-
+#Tworzymy klasę Agent, który jest graczem 
 class Agent(Player):
     Actions = "pas", "takevis", "takepile", "takeobj", "build", "discard"
 
