@@ -17,6 +17,19 @@ Innym rozwiązaniem tego zagadnienia jest <b>zmodyfikowany algorytm TSP</b>, kt�
 Trzecim rozwiązaniem jest <b>algorytm komiwojażera</b>. Jest to algorytm heurystyczny, czyli pozwala znaleźć rozwiązanie zbliżone do optymalnego, które niekoniecznie będzie najlepsze.\
 Stworzone AI bierze również pod uwagę priorytety tworzenia połączeń, tj. najpierw skupia się na tworzeniu tych, które są trudniejsze do stworzenia.
 Oprócz tego jest jeszcze element losowości; bot ma szansę wykonać bardziej ryzykowny lub bezpieczniejszy ruch przy przygotowaniach do stworzenia połączenia.
+Większość algorytmów bota, stworzona jest za pomocą znajomości teorii grafów. Możliwe jest rozszerzenie inteligencji bota, poprzez skorzystanie z typowych dla grafów stopni centralności, bliskości, pośrednictwa. \
+Degree Centrality (DC) czyli stopień centralności danego punktu jest iloczynem sumy wartości połączeń przez liczbę miast. 
+Im mniejsza liczba połączeń, tym dane miasto powinno mieć wyższą wartość priorytetu budowy drogi z uwzględnieniem ilości celów do danego połączenia miasta. 
+Na przykład dla Edynburgu, który ma tylko jedno bezpośrenie połaczenie, a liczba celów przechodząca przez to miasto wynosi 2, priorytet szybszego wybudowania trasy przez to miasto powinien być wyższy niż np. dla Kadyksu, który ma 2 połączenia, a przez którego przechodzi tylko 1 cel. \
+Closeness Centrality (CC), czyli stopień bliskości miar jak łatwo dotrzeć do innych węzłów z danego miasta, jak blisko centrum znajduje się miasto.
+Liczony jest przez odwrotność sumy liczby najkrótszych ścieżek (stosujemy algorytm Dijkstry) podzieloną przez liczbę wszystkich miast z wyłączeniem jednego. 
+Większy priorytet mają miasta z wyższą wartością tego współczynnika.\
+Betweenness Centrality (BC) - stopień pośrednictwa mówi jak często dane miasto jest na trasie między innymi miastami w grafie. 
+Tu używa się algorytmu Brandesa. Większy priorytet mają miasta z wyższą wartością tego współczynnika.\
+Clustering Coefficient - współczynnik skupienia się powiązanych węzłów w grafie (sąsiedztwa). 
+Większy priorytet mają miasta z niższą wartością tego współczynnika.\
+Należałoby każdej z tych wartości dobrać odpowiednią wagę i stworzyć przypisany współczynnik priorytetu dla bota. 
+Przykładowe wartości można zobaczyć w pliku <b>examples.png</b>. 
 
 ## 3. Opis wybranej koncepcji
 Nasz bot istnieje w stworzonym przez nas środowisku, które składa się z punktów (miast), dróg między nimi, ich kosztów zbudowania, oraz celów, które po zrealizowaniu dodają dodatkowe punkty.\
