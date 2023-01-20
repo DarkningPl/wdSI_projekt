@@ -563,9 +563,6 @@ def checkMouseClicks(board, mouse_pos):
                                     updateConsole(board, "Wybrano kolor " + str(k.value))
                                     board.state = ("build", 3)
                                     break
-                    # Tura bota TODO
-                    else:
-                        pass
 
     # Wybranie połączenia
     for c in board.allConns.connections:
@@ -595,22 +592,20 @@ def checkMouseClicks(board, mouse_pos):
                 if obj[0] in board.player.temporaryObjectives:
                     for k in range(len(board.cities[0])):
                         if board.cities[0][k].name == obj[1].text1.getText() or board.cities[0][k].name == obj[1].text2.getText():
-                            # board.cities[1][k] = Circle(board.cities[1][k].getCenter(), 12)
                             board.cities[1][k].setFill("goldenrod")
                         else:
-                            # board.cities[1][k] = Circle(board.cities[1][k].getCenter(), 8)
                             board.cities[1][k].setFill("lime")
                     if board.state[0] == "initial_discard" or board.state[0] == "discard":
                         if obj[0] not in board.objectives_to_retrieve:
-                            board.objectives_to_retrieve.append(obj[0])
-                            obj[1].box.setFill("tomato")
-                            board.state = (board.state[0], board.state[1] - 1)
+                            if board.state[1] > 0:
+                                board.objectives_to_retrieve.append(obj[0])
+                                obj[1].box.setFill("tomato")
+                                board.state = (board.state[0], board.state[1] - 1)
                         else:
                             board.objectives_to_retrieve.remove(obj[0])
                             obj[1].box.setFill(obj[1].color)
                             board.state = (board.state[0], board.state[1] + 1)
                             for k in board.cities[1]:
-                                # k = Circle(k.getCenter(), 8)
                                 k.setFill("lime")
                 elif obj[0] in board.player.objectives:
                     for k in range(len(board.cities[0])):
